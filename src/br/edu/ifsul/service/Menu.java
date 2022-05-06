@@ -21,33 +21,41 @@ public class Menu extends Thread {
     }
 
     public void run(){
-        while(true){
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Para ir a area do Cliente digite 1, para ir a area do Prestador de Serviços digite 2. Ou 0 para sair!");
-            String ans = scanner.nextLine();
-            if(ans.equals("1")) areaCliente(scanner, queue);
-            else if(ans.equals("2")) {
-                areaPrestadorDeServicos(scanner, queue);
-                synchronized (this) {
-                    try {
-                        wait();
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
+        try {
+            label:
+            while(true){
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("Para ir a area do Cliente digite 1, para ir a area do Prestador de Serviços digite 2. Ou 0 para sair!");
+                String ans = scanner.nextLine();
+
+                switch (ans) {
+                    case "1":
+                        areaCliente(scanner, queue);
+                        break;
+                    case "2":
+                        areaPrestadorDeServicos(scanner, queue);
+                        break;
+                    case "0":
+                        printAll();
+                        break label;
+                    default:
+                        System.out.println("Não temos essa opção!");
+                        break;
                 }
             }
-            else if(ans.equals("0")){
-                printAll();
-                break;
-            }else System.out.println("Não temos essa opção!");
+        } catch (InterruptedException e) {
+            System.out.println("Ops! Ocorreu um erro!");
+            e.printStackTrace();
         }
     }
 
     public void areaCliente(Scanner scanner, BlockingQueue queue){
-        System.out.println("Bem vindo ao U-service, precisamos de algumas infomações: ");
         Cliente cliente = new Cliente(queue);
+
+        System.out.println("Bem vindo ao U-service, precisamos de algumas infomações: ");
         System.out.print("Qual o seu nome: ");
         cliente.setNome(scanner.nextLine());
+
         System.out.println("Quantos serviços você deseja contratar? ");
         int quant=1;
         try {
@@ -67,14 +75,18 @@ public class Menu extends Thread {
         new Thread(cliente).start();
     }
 
-    public void areaPrestadorDeServicos(Scanner scanner, BlockingQueue queue){
-        System.out.println("Area do Prestador de Servico!");
+    public void areaPrestadorDeServicos(Scanner scanner, BlockingQueue queue) throws InterruptedException {
         PrestadorServico ps = new PrestadorServico(queue, this);
+
+        System.out.println("Area do Prestador de Servico!");
         System.out.print("Qual o seu nome: ");
         ps.setNome(scanner.nextLine());
         ps.setDataCadastro(Calendar.getInstance());
 
         new Thread(ps).start();
+        synchronized (this) {
+            wait();
+        }
     }
 
     private void printAll() {

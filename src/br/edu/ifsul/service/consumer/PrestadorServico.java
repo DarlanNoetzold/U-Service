@@ -50,6 +50,7 @@ public class PrestadorServico extends Thread{
                 getMenu().notify();
             }
          } catch (Exception e){
+            System.out.println("Ops! Ocorreu algum erro!");
             e.printStackTrace();
         }
 

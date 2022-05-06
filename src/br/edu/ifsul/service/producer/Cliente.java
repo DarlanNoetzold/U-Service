@@ -35,6 +35,7 @@ public class Cliente extends Thread {
             try {
                 queue.put(servico);
             } catch (InterruptedException ex) {
+                System.out.println("Ops! Algum erro ocorreu!");
                 Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
             }
         }); 
