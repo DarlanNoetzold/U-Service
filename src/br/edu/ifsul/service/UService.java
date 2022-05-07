@@ -6,16 +6,21 @@ package br.edu.ifsul.service;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-
+/**
+ * Classe main de inicializaçao do projeto.
+ * @author Darlan Noetzold
+ * @author Jakelyny Sousa de Araújo
+ *
+ */
 public class UService {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        BlockingQueue queue = new ArrayBlockingQueue(1024);
+        BlockingQueue serviceQueue = new ArrayBlockingQueue(1024);
 
-        Menu menu = new Menu(queue);
+        Menu menu = new Menu(serviceQueue);
 
         new Thread(menu).start();
 

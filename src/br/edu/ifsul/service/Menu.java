@@ -9,14 +9,19 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
-
+/**
+ * Thread responsável por criar e mostrar o Menu de escolhas para o usuário.
+ * @author Darlan Noetzold
+ * @author Jakelyny Sousa de Araújo
+ *
+ */
 public class Menu extends Thread {
-    private BlockingQueue queue;
+    private BlockingQueue serviceQueue;
 
     private List<PrestadorServico> prestadoresServicos;
 
-    public Menu(BlockingQueue queue) {
-        this.queue = queue;
+    public Menu(BlockingQueue serviceQueue) {
+        this.serviceQueue = serviceQueue;
         prestadoresServicos = new ArrayList<>();
     }
 
@@ -30,10 +35,10 @@ public class Menu extends Thread {
 
                 switch (ans) {
                     case "1":
-                        areaCliente(scanner, queue);
+                        areaCliente(scanner, serviceQueue);
                         break;
                     case "2":
-                        areaPrestadorDeServicos(scanner, queue);
+                        areaPrestadorDeServicos(scanner, serviceQueue);
                         break;
                     case "0":
                         printAll();
@@ -49,8 +54,8 @@ public class Menu extends Thread {
         }
     }
 
-    public void areaCliente(Scanner scanner, BlockingQueue queue){
-        Cliente cliente = new Cliente(queue);
+    public void areaCliente(Scanner scanner, BlockingQueue serviceQueue){
+        Cliente cliente = new Cliente(serviceQueue);
 
         System.out.println("Bem vindo ao U-service, precisamos de algumas infomações: ");
         System.out.print("Qual o seu nome: ");
@@ -75,8 +80,8 @@ public class Menu extends Thread {
         new Thread(cliente).start();
     }
 
-    public void areaPrestadorDeServicos(Scanner scanner, BlockingQueue queue) throws InterruptedException {
-        PrestadorServico ps = new PrestadorServico(queue, this);
+    public void areaPrestadorDeServicos(Scanner scanner, BlockingQueue serviceQueue) throws InterruptedException {
+        PrestadorServico ps = new PrestadorServico(serviceQueue, this);
 
         System.out.println("Area do Prestador de Servico!");
         System.out.print("Qual o seu nome: ");
@@ -98,16 +103,16 @@ public class Menu extends Thread {
         });
         System.out.println("===================================================");
         System.out.println("Serviços na fila:");
-        queue.forEach(System.out::println);
+        serviceQueue.forEach(System.out::println);
     }
 
 
-    public BlockingQueue getQueue() {
-        return queue;
+    public BlockingQueue getServiceQueue() {
+        return serviceQueue;
     }
 
-    public void setQueue(BlockingQueue queue) {
-        this.queue = queue;
+    public void setServiceQueue(BlockingQueue serviceQueue) {
+        this.serviceQueue = serviceQueue;
     }
 
     public List<PrestadorServico> getPrestadoresServicos() {

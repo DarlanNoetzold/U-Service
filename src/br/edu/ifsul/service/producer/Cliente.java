@@ -14,26 +14,28 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Thread responsável por produzir as mensagens. Esta Thread vai adicionar os Serviços do Cliente na fila onde os Prestadores de Serviços irão consumir.
+ * @author Darlan Noetzold
+ * @author Jakelyny Sousa de Araújo
  *
- * @author 20201PF.CC0149
  */
 public class Cliente extends Thread {
 
-    private BlockingQueue queue = null;
+    private BlockingQueue serviceQueue = null;
     private String nome;
     private Calendar dataCadastro;
     private List<Servico> servicos;
     
-    public Cliente(BlockingQueue queue) {
+    public Cliente(BlockingQueue serviceQueue) {
         servicos = new ArrayList<>();
-        this.queue = queue;
+        this.serviceQueue = serviceQueue;
     }
     
     @Override
     public void run() {
         servicos.stream().forEach(servico -> {
             try {
-                queue.put(servico);
+                serviceQueue.put(servico);
             } catch (InterruptedException ex) {
                 System.out.println("Ops! Algum erro ocorreu!");
                 Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
@@ -41,12 +43,12 @@ public class Cliente extends Thread {
         }); 
     }
 
-    public BlockingQueue getQueue() {
-        return queue;
+    public BlockingQueue getServiceQueue() {
+        return serviceQueue;
     }
 
-    public void setQueue(BlockingQueue queue) {
-        this.queue = queue;
+    public void setServiceQueue(BlockingQueue serviceQueue) {
+        this.serviceQueue = serviceQueue;
     }
 
     public String getNome() {

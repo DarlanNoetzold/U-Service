@@ -14,37 +14,39 @@ import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
 
 /**
+ * Thread consumidora da fila de Serviços
+ * @author Darlan Noetzold
+ * @author Jakelyny Sousa de Araújo
  *
- * @author 20201PF.CC0149
  */
 public class PrestadorServico extends Thread{
     private String nome;
     private Calendar dataCadastro;
     private List<Servico> servicosRealizar;
     
-    private BlockingQueue queue = null;
+    private BlockingQueue serviceQueue = null;
 
     private Menu menu;
 
-    public PrestadorServico(BlockingQueue queue, Menu menu) {
+    public PrestadorServico(BlockingQueue serviceQueue, Menu menu) {
         servicosRealizar = new ArrayList<>();
-        this.queue = queue;
+        this.serviceQueue = serviceQueue;
         this.menu = menu;
     }
     
     public void run(){
         Scanner scanner = new Scanner(System.in);
         try {
-            int tam = queue.size();
+            int tam = serviceQueue.size();
             while(tam > 0){
-                Servico servico = (Servico) queue.take();
+                Servico servico = (Servico) serviceQueue.take();
                 System.out.println("Você deseja realizar o servico " + servico.getNome() + " do Cliente "+servico.getCliente().getNome()+"? [0-não|1-sim]");
                 String op = scanner.nextLine();
                 if(op.equals("1")) servicosRealizar.add(servico);
-                else queue.put(servico);
+                else serviceQueue.put(servico);
                 tam=tam-1;
             }
-            printServicos(this, queue);
+            printServicos(this, serviceQueue);
             menu.getPrestadoresServicos().add(this);
             synchronized (getMenu()){
                 getMenu().notify();
@@ -56,21 +58,21 @@ public class PrestadorServico extends Thread{
 
     }
 
-    private void printServicos(PrestadorServico ps, BlockingQueue queue){
+    private void printServicos(PrestadorServico ps, BlockingQueue serviceQueue){
         System.out.println("Serviços do Prestador de Serviços " + ps.getNome());
         ps.getServicosRealizar().forEach(servico -> System.out.println(servico.getCliente().getNome() + " - " + servico.getNome()));
         System.out.println("=================");
         System.out.println("Serviços na fila:");
-        queue.forEach(System.out::println);
+        serviceQueue.forEach(System.out::println);
     }
     
 
-    public BlockingQueue getQueue() {
-        return queue;
+    public BlockingQueue getServiceQueue() {
+        return serviceQueue;
     }
 
-    public void setQueue(BlockingQueue queue) {
-        this.queue = queue;
+    public void setServiceQueue(BlockingQueue serviceQueue) {
+        this.serviceQueue = serviceQueue;
     }
 
     public String getNome() {

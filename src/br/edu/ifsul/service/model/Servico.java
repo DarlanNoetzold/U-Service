@@ -1,7 +1,12 @@
 package br.edu.ifsul.service.model;
 
 import br.edu.ifsul.service.producer.Cliente;
-
+/**
+ * Classe de Modelo para as informações de Serviço.
+ * @author Darlan Noetzold
+ * @author Jakelyny Sousa de Araújo
+ *
+ */
 public class Servico {
     private String nome;
     private Cliente cliente;
