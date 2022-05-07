@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"br.edu.ifsul.service.producer","l":"Cliente"},{"p":"br.edu.ifsul.service","l":"Menu"},{"p":"br.edu.ifsul.service.consumer","l":"PrestadorServico"},{"p":"br.edu.ifsul.service.model","l":"Servico"},{"p":"br.edu.ifsul.service","l":"UService"}]
