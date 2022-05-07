@@ -24,7 +24,11 @@ public class Menu extends Thread {
         this.serviceQueue = serviceQueue;
         prestadoresServicos = new ArrayList<>();
     }
-
+    /**
+     * <p> Método que irá executar a Thread. Mostrando o Menu enquanto o(s) usuário(s) precisar.
+     * </p>
+     * @since 1.0
+     */
     public void run(){
         try {
             label:
@@ -53,7 +57,13 @@ public class Menu extends Thread {
             e.printStackTrace();
         }
     }
-
+    /**
+     * <p> Método que irá capturar as informações do Cliente e Serviço(s) e enviar para a Thread do mesmo.
+     * </p>
+     * @param scanner Scanner que irá capturar as informações que o usuário (Cliente) digitar.
+     * @param serviceQueue Fila de Serviços que será enviado para a Thread de Cliente.
+     * @since 1.0
+     */
     public void areaCliente(Scanner scanner, BlockingQueue serviceQueue){
         Cliente cliente = new Cliente(serviceQueue);
 
@@ -80,6 +90,13 @@ public class Menu extends Thread {
         new Thread(cliente).start();
     }
 
+    /**
+     * <p> Método que irá capturar as informações do Prestador de Serviços e enviar para a Thread do mesmo.
+     * </p>
+     * @param scanner Scanner que irá capturar as informações que o usuário (Prestador de Serviços) digitar.
+     * @param serviceQueue Fila de Serviços que será enviado para a Thread de Prestador de Serviços.
+     * @since 1.0
+     */
     public void areaPrestadorDeServicos(Scanner scanner, BlockingQueue serviceQueue) throws InterruptedException {
         PrestadorServico ps = new PrestadorServico(serviceQueue, this);
 
@@ -94,6 +111,11 @@ public class Menu extends Thread {
         }
     }
 
+    /**
+     * <p> Método que irá mostrar todos os Serviços com seus respectivos Prestadores de Serviços e Clientes, além daqueles Serviços que permaneceram na fila.
+     * </p>
+     * @since 1.0
+     */
     private void printAll() {
         System.out.println("PRESTADORES DE SERVIÇOS");
         getPrestadoresServicos().forEach(prestadorServico -> {

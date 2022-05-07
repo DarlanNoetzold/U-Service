@@ -30,7 +30,12 @@ public class Cliente extends Thread {
         servicos = new ArrayList<>();
         this.serviceQueue = serviceQueue;
     }
-    
+
+    /**
+     * <p> Método que irá executar a Thread.
+     * </p>
+     * @since 1.0
+     */
     @Override
     public void run() {
         servicos.stream().forEach(servico -> {
