@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
 /**
- * Thread responsável por criar e mostrar o Menu de escolhas para o usuário.
+ * Thread responsavel por criar e mostrar o Menu de escolhas para o usuario.
  * @author Darlan Noetzold
- * @author Jakelyny Sousa de Araújo
+ * @author Jakelyny Sousa de Araujo
  *
  */
 public class Menu extends Thread {
@@ -25,7 +25,7 @@ public class Menu extends Thread {
         prestadoresServicos = new ArrayList<>();
     }
     /**
-     * <p> Método que irá executar a Thread. Mostrando o Menu enquanto o(s) usuário(s) precisar.
+     * <p> Metodo que ira executar a Thread. Mostrando o Menu enquanto o(s) usuario(s) precisar.
      * </p>
      * @since 1.0
      */
@@ -58,10 +58,10 @@ public class Menu extends Thread {
         }
     }
     /**
-     * <p> Método que irá capturar as informações do Cliente e Serviço(s) e enviar para a Thread do mesmo.
+     * <p> Metodo que ira capturar as informacoes do Cliente e Servico(s) e enviar para a Thread do mesmo.
      * </p>
-     * @param scanner Scanner que irá capturar as informações que o usuário (Cliente) digitar.
-     * @param serviceQueue Fila de Serviços que será enviado para a Thread de Cliente.
+     * @param scanner Scanner que ira capturar as informacoes que o usuario (Cliente) digitar.
+     * @param serviceQueue Fila de Servicos que será enviado para a Thread de Cliente.
      * @since 1.0
      */
     public void areaCliente(Scanner scanner, BlockingQueue serviceQueue){
@@ -91,10 +91,10 @@ public class Menu extends Thread {
     }
 
     /**
-     * <p> Método que irá capturar as informações do Prestador de Serviços e enviar para a Thread do mesmo.
+     * <p> Metodo que ira capturar as informacoes do Prestador de Servicos e enviar para a Thread do mesmo.
      * </p>
-     * @param scanner Scanner que irá capturar as informações que o usuário (Prestador de Serviços) digitar.
-     * @param serviceQueue Fila de Serviços que será enviado para a Thread de Prestador de Serviços.
+     * @param scanner Scanner que irá capturar as informacoes que o usuario (Prestador de Serviços) digitar.
+     * @param serviceQueue Fila de Servicos que sera enviado para a Thread de Prestador de Servicos.
      * @since 1.0
      */
     public void areaPrestadorDeServicos(Scanner scanner, BlockingQueue serviceQueue) throws InterruptedException {
@@ -112,7 +112,7 @@ public class Menu extends Thread {
     }
 
     /**
-     * <p> Método que irá mostrar todos os Serviços com seus respectivos Prestadores de Serviços e Clientes, além daqueles Serviços que permaneceram na fila.
+     * <p> Metodo que ira mostrar todos os Servicos com seus respectivos Prestadores de Servicos e Clientes, alem daqueles Servicos que permaneceram na fila.
      * </p>
      * @since 1.0
      */

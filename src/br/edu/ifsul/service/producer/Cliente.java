@@ -14,9 +14,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Thread responsável por produzir as mensagens. Esta Thread vai adicionar os Serviços do Cliente na fila onde os Prestadores de Serviços irão consumir.
+ * Thread responsavel por produzir as mensagens. Esta Thread vai adicionar os Servicos do Cliente na fila onde os Prestadores de Servicos irao consumir.
  * @author Darlan Noetzold
- * @author Jakelyny Sousa de Araújo
+ * @author Jakelyny Sousa de Araujo
  *
  */
 public class Cliente extends Thread {

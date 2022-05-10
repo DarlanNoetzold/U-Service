@@ -7,9 +7,9 @@ package br.edu.ifsul.service;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 /**
- * Classe main de inicializaçao do projeto.
+ * Classe main de inicializacao do projeto.
  * @author Darlan Noetzold
- * @author Jakelyny Sousa de Araújo
+ * @author Jakelyny Sousa de Araujo
  *
  */
 public class UService {

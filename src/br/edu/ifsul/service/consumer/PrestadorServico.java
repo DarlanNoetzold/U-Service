@@ -14,9 +14,9 @@ import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
 
 /**
- * Thread consumidora da fila de Serviços
+ * Thread consumidora da fila de Servicos
  * @author Darlan Noetzold
- * @author Jakelyny Sousa de Araújo
+ * @author Jakelyny Sousa de Araujo
  * @version 1.0
  */
 public class PrestadorServico extends Thread{
@@ -34,7 +34,7 @@ public class PrestadorServico extends Thread{
         this.menu = menu;
     }
     /**
-     * <p> Método que irá executar a Thread.
+     * <p> Metodo que ira executar a Thread.
      * </p>
      * @since 1.0
      */
@@ -62,10 +62,10 @@ public class PrestadorServico extends Thread{
 
     }
     /**
-     * <p> Método que irá mostrar os Serviços que o atual Prestador de Serviços aceitou realizar e os Serviços que permanecem na fila.
+     * <p> Metodo que ira mostrar os Servicos que o atual Prestador de Servicos aceitou realizar e os Servicos que permanecem na fila.
      * </p>
-     * @param ps Prestador de Serviços com as informações necessárias para mostrar para o usuário.
-     * @param serviceQueue Fila de Serviços.
+     * @param ps Prestador de Serviços com as informacoes necessárias para mostrar para o usuario.
+     * @param serviceQueue Fila de Servicos.
      * @since 1.0
      */
     private void printServicos(PrestadorServico ps, BlockingQueue serviceQueue){

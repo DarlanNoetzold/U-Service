@@ -2,9 +2,9 @@ package br.edu.ifsul.service.model;
 
 import br.edu.ifsul.service.producer.Cliente;
 /**
- * Classe de Modelo para as informações de Serviço.
+ * Classe de Modelo para as informacoes de Servico.
  * @author Darlan Noetzold
- * @author Jakelyny Sousa de Araújo
+ * @author Jakelyny Sousa de Araujo
  *
  */
 public class Servico {
