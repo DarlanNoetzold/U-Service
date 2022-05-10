@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"br.edu.ifsul.service"},{"l":"br.edu.ifsul.service.consumer"},{"l":"br.edu.ifsul.service.model"},{"l":"br.edu.ifsul.service.producer"}]
