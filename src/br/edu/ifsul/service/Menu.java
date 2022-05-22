@@ -34,7 +34,7 @@ public class Menu extends Thread {
             label:
             while(true){
                 Scanner scanner = new Scanner(System.in);
-                System.out.println("Para ir a area do Cliente digite 1, para ir a area do Prestador de Serviços digite 2. Ou 0 para sair!");
+                System.out.println("Para ir a area do Cliente digite 1, para ir a area do Prestador de Serviços digite 2, se você quer ver a agenda completa digite 3. Ou 0 para sair!");
                 String ans = scanner.nextLine();
 
                 switch (ans) {
@@ -43,6 +43,10 @@ public class Menu extends Thread {
                         break;
                     case "2":
                         areaPrestadorDeServicos(scanner, serviceQueue);
+                        break;
+                    case "3":
+                        System.out.println("==================AGENDA COMPLETA==================");
+                        printAll();
                         break;
                     case "0":
                         printAll();
