@@ -45,6 +45,7 @@ public class PrestadorServico extends Thread{
         Scanner scanner = new Scanner(System.in);
         try {
             int tam = serviceQueue.size();
+            if(tam == 0) System.out.println("Não existem Serviços a serem realizados!");
             while(tam > 0){
                 Servico servico = (Servico) serviceQueue.take();
                 System.out.println("Você deseja realizar o servico " + servico.getNome() + " do Cliente "+servico.getCliente().getNome()+"? [0-não|1-sim]");
@@ -71,11 +72,18 @@ public class PrestadorServico extends Thread{
      * @since 1.0
      */
     private void printServicos(PrestadorServico ps, BlockingQueue serviceQueue){
-        System.out.println("Serviços do Prestador de Serviços " + ps.getNome());
-        ps.getServicosRealizar().forEach(servico -> System.out.println(servico.getCliente().getNome() + " - " + servico.getNome()));
+        if(ps.getServicosRealizar().isEmpty()) System.out.println("\n\nO Prestador de Serviços " + ps.getNome() + " não tem Serviços agendados!");
+        else {
+            System.out.println("Serviços do Prestador de Serviços " + ps.getNome());
+            ps.getServicosRealizar().forEach(servico -> System.out.println(servico.getCliente().getNome() + " - " + servico.getNome()));
+        }
         System.out.println("=================");
-        System.out.println("Serviços na fila:");
-        serviceQueue.forEach(System.out::println);
+
+        if(serviceQueue.isEmpty()) System.out.println("Não existem Serviços cadastrados na fila.\n");
+        else {
+            System.out.println("Serviços na fila:");
+            serviceQueue.forEach(System.out::println);
+        }
     }
     
 

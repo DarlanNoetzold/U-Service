@@ -128,12 +128,18 @@ public class Menu extends Thread {
         System.out.println("PRESTADORES DE SERVIÇOS");
         getPrestadoresServicos().forEach(prestadorServico -> {
             System.out.println("===================================================");
-            System.out.println("Serviços do prestador "+ prestadorServico.getNome());
-            prestadorServico.getServicosRealizar().stream().forEach(System.out::println);
+            if(prestadorServico.getServicosRealizar().isEmpty()) System.out.println("O Prestador de Serviços " + prestadorServico.getNome() + " não tem Serviços agendados!");
+            else{
+                System.out.println("Serviços do prestador "+ prestadorServico.getNome());
+                prestadorServico.getServicosRealizar().stream().forEach(System.out::println);
+            }
         });
         System.out.println("===================================================");
-        System.out.println("Serviços na fila:");
-        serviceQueue.forEach(System.out::println);
+        if(serviceQueue.isEmpty()) System.out.println("Não existem Serviços cadastrados na fila.\n");
+        else {
+            System.out.println("Serviços na fila:");
+            serviceQueue.forEach(System.out::println);
+        }
     }
 
 
