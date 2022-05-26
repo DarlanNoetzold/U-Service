@@ -76,11 +76,15 @@ public class Menu extends Thread {
         cliente.setNome(scanner.nextLine());
 
         System.out.println("Quantos serviços você deseja contratar? ");
-        int quant=1;
-        try {
-            quant = Integer.parseInt(scanner.nextLine());
-        } catch (Exception e) {
-            System.out.println("Valor Inválido! Será cadastrado apenas um serviço.");
+        int quant = 0;
+        while(true) {
+            try {
+                quant = Integer.parseUnsignedInt(scanner.nextLine());
+            } catch (Exception e) {
+                System.out.println("Valor Inválido! >:( Digite um número positivo!");
+                quant=-1;
+            }
+            if(quant != -1) break;
         }
         int cont=0;
         while(quant > cont){
