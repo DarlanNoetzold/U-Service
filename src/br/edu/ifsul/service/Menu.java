@@ -68,7 +68,7 @@ public class Menu extends Thread {
      * @param serviceQueue Fila de Servicos que será enviado para a Thread de Cliente.
      * @since 1.0
      */
-    public void areaCliente(Scanner scanner, BlockingQueue serviceQueue){
+    public void areaCliente(Scanner scanner, BlockingQueue serviceQueue) {
         Cliente cliente = new Cliente(serviceQueue);
 
         System.out.println("Bem vindo ao U-service, precisamos de algumas infomações: ");

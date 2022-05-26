@@ -6,12 +6,15 @@ package br.edu.ifsul.service.consumer;
 
 import br.edu.ifsul.service.Menu;
 import br.edu.ifsul.service.model.Servico;
+import br.edu.ifsul.service.producer.Cliente;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Thread consumidora da fila de Servicos
@@ -55,9 +58,8 @@ public class PrestadorServico extends Thread{
             synchronized (getMenu()){
                 getMenu().notify();
             }
-         } catch (Exception e){
-            System.out.println("Ops! Ocorreu algum erro!");
-            e.printStackTrace();
+         } catch (InterruptedException ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, "Ops! Algum erro ocorreu!", ex);
         }
 
     }

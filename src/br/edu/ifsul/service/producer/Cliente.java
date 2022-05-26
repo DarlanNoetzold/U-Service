@@ -42,8 +42,7 @@ public class Cliente extends Thread {
             try {
                 serviceQueue.put(servico);
             } catch (InterruptedException ex) {
-                System.out.println("Ops! Algum erro ocorreu!");
-                Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, "Ops! Algum erro ocorreu!", ex);
             }
         }); 
     }
@@ -79,8 +78,4 @@ public class Cliente extends Thread {
     public void setServico(List<Servico> servico) {
         this.servicos = servico;
     }
-
-    
-    
-    
 }
